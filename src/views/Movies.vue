@@ -3,21 +3,18 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+import { Component, Vue } from "vue-property-decorator";
 import axios from "axios";
 
 import Movie from "@/components/movie/Movie.vue";
 
-export default Vue.extend({
-  name: "Movies",
+@Component({
   components: {
     Movie
-  },
-  data(): { movie: {} } {
-    return {
-      movie: {}
-    };
-  },
+  }
+})
+export default class Movies extends Vue {
+  movie: {} = {};
   mounted() {
     axios
       .get(
@@ -26,8 +23,5 @@ export default Vue.extend({
       .then(response => (this.movie = response.data))
       .catch(error => console.log(error));
   }
-});
+}
 </script>
-
-<style scoped>
-</style>

@@ -12,21 +12,14 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+import { Component, Vue } from "vue-property-decorator";
 
-export default Vue.extend({
-  name: "Movie",
-  props: ["movie"],
-  data(): { movieData: {} } {
-    return {
-      movieData: {}
-    };
-  },
-  mounted() {
-    console.log(this.$props.movie);
-    console.log(this.movie.all);
-  }
-});
+@Component({
+  props: ["movie"]
+})
+export default class Movie extends Vue {
+  movieData: {} = {};
+}
 </script>
 
 <style scoped>

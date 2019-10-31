@@ -4,11 +4,11 @@
       <input
         type="text"
         @keydown.enter="search()"
-        @click="openSearch()"
+        @click="toggleSearch(true)"
         v-model="searchQuery"
         placeholder="Rechercher un film..."
       />
-      <div class="search" @click="closeSearch()"></div>
+      <div class="search" @click="toggleSearch(false)"></div>
     </div>
     <p
       class="info-message"
@@ -18,47 +18,26 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+import { Component, Vue } from "vue-property-decorator";
 import Router from "vue-router";
 
-export default Vue.extend({
-  name: "SearchInput",
-  data(): { searchVisible: boolean; searchQuery: string } {
-    return {
-      searchVisible: false,
-      searchQuery: ""
-    };
-  },
-  methods: {
-    openSearch(): void {
-      this.searchVisible = true;
-    },
-    closeSearch(): void {
-      this.searchVisible = false;
-    },
-    search(): void {
-      if (this.searchQuery.length > 0) {
-        this.$router.push({ path: `/movies/${this.searchQuery}` });
-      }
+@Component({})
+export default class SearchInput extends Vue {
+  searchVisible: boolean = false;
+  searchQuery: string = "";
+
+  toggleSearch(open: boolean): void {
+    this.searchVisible = open;
+  }
+
+  search(): void {
+    if (this.searchQuery.length > 0) {
+      this.$router.push({ path: `/movies/${this.searchQuery}` });
     }
   }
-});
+}
 </script>
 
 <style scoped>
 @import url("./SearchInput.css");
-
-.info-message {
-  position: absolute;
-  bottom: 250px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 20px;
-  font-weight: bold;
-  transition: all 0.5s;
-}
-
-.hidden {
-  opacity: 0;
-}
 </style>

@@ -6,15 +6,13 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+import {Component, Vue} from 'vue-property-decorator';
 import SearchInput from "@/components/inputs/SearchInput.vue";
 
-export default Vue.extend({
-  name: "Search",
-  components: {
+@Component({components: {
     SearchInput
-  }
-});
+  }})
+export default class Search extends Vue{}
 </script>
 
 <style>
