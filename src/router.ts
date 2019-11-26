@@ -1,8 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 
-import Search from './views/Search.vue';
-import Movies from './views/Movies.vue';
+import MovieList from './views/MovieList.vue';
 
 Vue.use(Router);
 
@@ -12,17 +11,12 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'search',
-      component: Search,
-    },
-    {
-      path: '/movies/:query',
-      name: 'movies',
-      component: Movies,
+      name: 'movieList',
+      component: MovieList,
     },
     {
       path: '/*',
-      redirect: { name: 'search' },
+      redirect: { name: 'movieList' },
     },
   ],
 });

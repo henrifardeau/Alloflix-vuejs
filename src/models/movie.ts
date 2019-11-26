@@ -1,0 +1,7 @@
+export default interface Movie {
+  Title: string;
+  Poster: string;
+  Type: string;
+  Year: string;
+  imodbId: string;
+}
