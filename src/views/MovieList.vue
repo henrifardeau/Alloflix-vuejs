@@ -13,9 +13,13 @@
         </div>
       </div>
     </section>
-    <ul>
-      <movie v-for="movie in movies" :key="movie.title" :movie="movie" />
-    </ul>
+    <section class="section">
+      <div class="container">
+        <ul>
+          <movie v-for="movie in movies" :key="movie.title" :movie="movie" />
+        </ul>
+      </div>
+    </section>
   </div>
 </template>
 
@@ -37,7 +41,9 @@ export default Vue.extend({
   },
   methods: {
     fetchMovies(): void {
-      this.$store.dispatch('movies/fetchMovies', { search: this.search, type: 'movie', page: '1' });
+      if (this.search) {
+        this.$store.dispatch('movies/fetchMovies', { search: this.search, type: 'movie', page: '1' });
+      }
     },
   },
 });

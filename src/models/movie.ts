@@ -3,5 +3,5 @@ export default interface Movie {
   Poster: string;
   Type: string;
   Year: string;
-  imodbId: string;
+  imdbID: string;
 }
